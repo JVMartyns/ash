@@ -1471,6 +1471,9 @@ defmodule Ash.Actions.ManagedRelationships do
           {:ok, notifications} ->
             {:ok, current_value, notifications}
 
+          {:ok, record, notifications} ->
+            {:ok, record, notifications}
+
           {:error, error} ->
             {:error, error}
         end
@@ -2253,6 +2256,11 @@ defmodule Ash.Actions.ManagedRelationships do
             debug_log(relationship.name, changeset, :destroy, :ok, opts[:debug?])
 
             {:ok, notifications}
+
+          {:ok, record, notifications} ->
+            debug_log(relationship.name, changeset, :destroy, :ok, opts[:debug?])
+
+            {:ok, record, notifications}
 
           {:error, error} ->
             debug_log(
